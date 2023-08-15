@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,45 @@ namespace DotnetPractice
 
 			#endregion
 
-			//Marshalling is a "medium" for want of a better word or a gateway, to communicate with the unmanaged world's data types and vice versa
+			//Marshalling is a "medium" for want of a better word or a gateway, to communicate with the 
+			//unmanaged world's data types and vice versa
+
+
+			Console.WriteLine("Pointer by Marshal");
+			IntPtr ptr = Marshal.AllocHGlobal(1);
+			try
+			{
+				Span<byte> bytesPointer;
+				unsafe { bytesPointer = new Span<byte>((byte*)ptr, 1); }
+				bytesPointer[0] = 42;
+
+				Console.WriteLine(Marshal.ReadByte(ptr));
+				Console.WriteLine(bytesPointer[0]);
+				//Assert.Equal(42, bytesPointer[0]);
+				//Assert.Equal(Marshal.ReadByte(ptr), bytesPointer[0]);
+				//bytesPointer[1] = 43; // Throws IndexOutOfRangeException
+			}
+			finally { Marshal.FreeHGlobal(ptr); }
+
+
+			Console.WriteLine("Span Struct ");
+			Span<MutableStruct> spanOfStructs = new MutableStruct[1];
+			spanOfStructs[0].Value = 42;
+			Console.WriteLine(spanOfStructs[0].Value);
+			Console.WriteLine(42);
+			//Assert.Equal(42, spanOfStructs[0].Value);
+			var listOfStructs = new List<MutableStruct> { new MutableStruct() };
+			//Console.WriteLine(listOfStructs[0].Value); //.Value = 42; // Error CS1612: the return value is not a variable
+
+			var values = new int[] { 42, 84, 126 };
+			AddOne(ref values[2]);
+			Console.WriteLine( values[2]);
 		}
+
+		public static void AddOne(ref int value) => value += 1;
+
+
+		struct MutableStruct { public int Value; }
+
 	}
 }
