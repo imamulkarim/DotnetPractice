@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -82,7 +83,16 @@ namespace DotnetPractice
 			var values = new int[] { 42, 84, 126 };
 			AddOne(ref values[2]);
 			Console.WriteLine( values[2]);
+
 		}
+
+		//static Span<char> FormatGuid( Guid guid)
+		//{
+		//	Span<char> chars = stackalloc char[100];
+		//	bool formatted = guid.TryFormat(chars, out int charsWritten, "d");
+		//	Debug.Assert(formatted);
+		//	return chars.Slice(0, charsWritten); // Uh oh
+		//}
 
 		public static void AddOne(ref int value) => value += 1;
 
