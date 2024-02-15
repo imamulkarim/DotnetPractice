@@ -88,6 +88,27 @@ namespace DotnetPractice
 			// Output:
 			// The set (2, 3, 4) doubled: (4, 6, 8)
 
+			//Lambdas with the standard query operators
+			//https://learn.microsoft.com/en-us/dotnet/api/system.func-1?view=net-8.0
+			//Func<TResult> Delegate
+			LambdaDeligateField<int> lazyOne = new LambdaDeligateField<int>(() => ExpensiveOne());
+			LambdaDeligateField<long> lazyTwo = new LambdaDeligateField<long>(() => ExpensiveTwo("apple"));
+
+			Console.WriteLine(lazyOne.Value);
+			Console.WriteLine(lazyTwo.Value);
+
+			static int ExpensiveOne()
+			{
+				Console.WriteLine("\nExpensiveOne() is executing.");
+				return 1;
+			}
+
+			static long ExpensiveTwo(string input)
+			{
+				Console.WriteLine("\nExpensiveTwo() is executing.");
+				return (long)input.Length;
+			}
+
 
 			object parse = (string s) => int.Parse(s);   // Func<string, int>
 			Delegate parse2 = (string s) => int.Parse(s); // Func<string, int>
@@ -101,4 +122,27 @@ namespace DotnetPractice
 
 		}
 	}
+
+
+	public class LambdaDeligateField<T> where T : struct {
+
+		private Nullable<T> value;
+		private Func<T> getValue;
+        public LambdaDeligateField(Func<T> func)
+        {
+			value = null;
+			getValue = func;
+        }
+
+		public T Value
+		{
+			get
+			{
+				if(value == null)
+					value = getValue();
+				return (T)value;
+			}
+		}
+    }
+
 }
