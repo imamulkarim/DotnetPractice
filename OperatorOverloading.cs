@@ -17,6 +17,8 @@ namespace DotnetPractice
 			Console.WriteLine(a * b);  // output: 5 / 8
 			Console.WriteLine(a / b);  // output: 10 / 4
 
+			Console.WriteLine(a == b);   // output: -5 / 4
+
 		}
 	}
 
@@ -36,7 +38,16 @@ namespace DotnetPractice
 		}
 
 		public static Fraction operator +(Fraction a) => a;
-		public static Fraction operator -(Fraction a) => new Fraction(-a.num, a.den);
+		//public static Fraction operator -(Fraction a) => new Fraction(-a.num, a.den);
+		public static Fraction operator -(Fraction a) {
+			return new Fraction(-a.num, a.den);
+				}
+
+		public static bool operator ==(Fraction a, Fraction b)
+	=> a.num == b.num && a.den == b.den;
+
+		public static bool operator !=(Fraction a, Fraction b)
+=> a.num != b.num && a.den != b.den;
 
 		public static Fraction operator +(Fraction a, Fraction b)
 			=> new Fraction(a.num * b.den + b.num * a.den, a.den * b.den);
@@ -55,6 +66,8 @@ namespace DotnetPractice
 			}
 			return new Fraction(a.num * b.den, a.den * b.num);
 		}
+
+	
 
 		public override string ToString() => $"{num} / {den}";
 	}

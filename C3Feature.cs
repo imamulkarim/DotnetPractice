@@ -99,6 +99,13 @@ namespace DotnetPractice
 			//var inc = [return: NotNullifNotNull(nameof(s))] (int? s) => s.HasValue ? s++ : null;
 
 
+			//Expression Trees
+			// --> https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/expression-trees-building
+			//Expression<Func<int>> sum = () => 1 + 2;
+			//var one = Expression.Constant(1, typeof(int));
+			//var two = Expression.Constant(2, typeof(int));
+
+
 		}
 	}
 }
