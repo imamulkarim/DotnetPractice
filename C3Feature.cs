@@ -89,6 +89,7 @@ namespace DotnetPractice
 			// The set (2, 3, 4) doubled: (4, 6, 8)
 
 			//Lambdas with the standard query operators
+			#region Func<TResult> Delegate
 			//https://learn.microsoft.com/en-us/dotnet/api/system.func-1?view=net-8.0
 			//Func<TResult> Delegate
 			LambdaDeligateField<int> lazyOne = new LambdaDeligateField<int>(() => ExpensiveOne());
@@ -108,7 +109,7 @@ namespace DotnetPractice
 				Console.WriteLine("\nExpensiveTwo() is executing.");
 				return (long)input.Length;
 			}
-
+			#endregion
 
 			object parse = (string s) => int.Parse(s);   // Func<string, int>
 			Delegate parse2 = (string s) => int.Parse(s); // Func<string, int>
