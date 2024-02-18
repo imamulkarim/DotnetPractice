@@ -1,4 +1,6 @@
-﻿namespace DotnetPractice
+﻿using DotnetPractice.C3Feature;
+
+namespace DotnetPractice
 {
 	internal class Program
 	{
@@ -10,7 +12,7 @@
 
 			//new C2Feature();
 
-			new C3Feature();
+			new C3Features();
 
 			//new C7Feature();
 
