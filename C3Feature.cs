@@ -109,16 +109,34 @@ namespace DotnetPractice
 				Console.WriteLine("\nExpensiveTwo() is executing.");
 				return (long)input.Length;
 			}
-			#endregion
+
+
+			int[] numbers2 = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+			int oddNumbers = numbers2.Count(n => n % 2 == 1);
+			Console.WriteLine($"There are {oddNumbers} odd numbers in {string.Join(" ", numbers)}");
+
+			
+			//Natural type of a lambda expression
+			var parse3 = (string s) => int.Parse(s);
 
 			object parse = (string s) => int.Parse(s);   // Func<string, int>
 			Delegate parse2 = (string s) => int.Parse(s); // Func<string, int>
 
 
+			//Explicit return type
+			//var choose = (bool b) => b ? 1 : "two"; // ERROR: Can't infer return type
+			var choose = object (bool b) => b ? 1 : "two"; // Func<bool, object>
+			#endregion
+
+
 			//Attributes
-			//Func<string?, int?> parse3 = [ProvidesNullCheck] (s) => (s is not null) ? int.Parse(s) : null;
+			//Func<string?, int?> parse4 = [ProvidesNullCheck] (s) => (s is not null) ? int.Parse(s) : null;
 			//var concat = ([DisallowNull] string a, [DisallowNull] string b) => a + b;
 			//var inc = [return: NotNullifNotNull(nameof(s))] (int? s) => s.HasValue ? s++ : null;
+
+
+			//Capture of outer variables and variable scope in lambda expressions
+			//https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions
 
 
 		}
