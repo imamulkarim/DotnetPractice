@@ -34,7 +34,7 @@ namespace DotnetPractice.C4Feature
 			//int optionalint = 10)
 
 			//COM interfaces
-
+			//Type equivalence and embedded interop types
 		}
 
 		private  void DynamicBinding()
