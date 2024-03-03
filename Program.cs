@@ -1,4 +1,5 @@
 ﻿using DotnetPractice.C3Feature;
+using DotnetPractice.C4Feature;
 
 namespace DotnetPractice
 {
@@ -12,7 +13,9 @@ namespace DotnetPractice
 
 			//new C2Feature();
 
-			new C3Features();
+			//new C3Features();
+
+			new C4Features().Run();
 
 			//new C7Feature();
 
@@ -21,7 +24,7 @@ namespace DotnetPractice
 			//new OperatorOverloading().OnOperatorOverloading();
 		}
 
-		
+
 	}
 
 	internal class People
