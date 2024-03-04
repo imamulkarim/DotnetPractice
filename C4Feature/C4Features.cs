@@ -97,7 +97,7 @@ You could extend this example with as many embedded quotes as needed for your te
 		// Valid due to implicit reference conversion of
 		// objectAction to Action<string>, but may fail
 		// at run time.
-		Action<string> combination = stringAction + objectAction;
+		//Action<string> combination = stringAction + objectAction;
 
 
 		// Creates a new delegate instance with a runtime type of Action<string>.

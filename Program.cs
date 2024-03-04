@@ -1,5 +1,6 @@
 ﻿using DotnetPractice.C3Feature;
 using DotnetPractice.C4Feature;
+using DotnetPractice.C5Feature;
 
 namespace DotnetPractice
 {
@@ -15,7 +16,10 @@ namespace DotnetPractice
 
 			//new C3Features();
 
-			new C4Features().Run();
+			//new C4Features().Run();
+
+			//Task.Run(()=> MainAsync(args));
+			MainAsync(args).Wait();
 
 			//new C7Feature();
 
@@ -24,8 +28,27 @@ namespace DotnetPractice
 			//new OperatorOverloading().OnOperatorOverloading();
 		}
 
+		static async Task MainAsync(string[] args)
+		{
+			try
+			{
+				await new C5Features().Run();
+
+				//await Task.Yield();
+				//Thread.Sleep(5000);
+
+				// Asynchronous implementation.
+				// await Task.Delay(1000);
+			}
+			catch (Exception ex)
+			{
+				// Handle exceptions.
+			}
+		}
 
 	}
+
+	
 
 	internal class People
 	{
